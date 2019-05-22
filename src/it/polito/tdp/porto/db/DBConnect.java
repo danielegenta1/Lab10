@@ -11,7 +11,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnect {
 
-	private static String jdbcURL = "jdbc:mysql://localhost/porto2015";
+	private static String jdbcURL = "jdbc:mysql://localhost/porto2015?serverTimezone=Europe/Rome";
 	private static HikariDataSource ds;
 
 	public static Connection getConnection() {
@@ -20,7 +20,7 @@ public class DBConnect {
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(jdbcURL);
 			config.setUsername("root");
-			config.setPassword("");
+			config.setPassword("password");
 			
 			// configurazione MySQL
 			config.addDataSourceProperty("cachePrepStmts", "true");
@@ -30,10 +30,13 @@ public class DBConnect {
 			ds = new HikariDataSource(config);
 		}
 
-		try {
+		try 
+		{
 			Connection c = ds.getConnection();
 			return c;
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
